@@ -1,4 +1,3 @@
-
     // Dino Constructor
     function Dino(species, weight, height, diet) {
         this.species = species;
