@@ -1,6 +1,11 @@
 
     // Create Dino Constructor
-
+    function Dino(species, weight, height, diet) {
+        this.species = species;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet
+    }
 
     // Create Dino Objects
 
