@@ -37,6 +37,13 @@
 
 
     // Create Human Object
+    function Human(name, weight, height, diet) {
+        this.species = 'Human';
+        this.name = name;
+        this.weight = weight;
+        this.height = height;
+        this.diet = diet;
+    }
 
     // Use IIFE to get human data from form
 
