@@ -34,7 +34,24 @@
     };
 
     // Create Dino Objects
+    function createDinoObjects(url) {
+        var dinoData = []; // Initialize an empty array to hold Dino objects
 
+        fetch(url)  
+            .then(function(response) {  // Grabbing the JSON
+                return response.json();   // Parse the JSON response
+            })
+            .then(function(data) {
+                data.Dinos.forEach(function(dino) { // Loop through each Dino in the data
+                    dinoData.push(new Dino(dino.species, dino.weight, dino.height, dino.diet)); // Create a new Dino object and add it to the array
+                });
+            })
+
+        return dinoData; // Return the dinoData array (this will be empty at this point)
+    }
+
+    // Call the function to create Dino objects
+    dinoData = createDinoObjects('dino.json');
 
     // Create Human Object
     function Human(name, weight, height, diet) {
