@@ -6,43 +6,43 @@
         this.diet = diet;
     }
 
-    // Dino Compare Method 1: Compare Height
+    // Compare Height
     Dino.prototype.compareHeight = function(human) {
-        const relativeDiffHeight = this.calcRelativeDiff(this.height, human.height);
+        const actualDiffHeight = this.calcAbsDiff(this.height, human.height);
+        const feet = Math.round(actualDiffHeight / 12)
         if (this.height > human.height) {
-            return `A(n) ${this.species} is ${relativeDiffHeight.toFixed(0)}% taller than ${human.name}.`;
+            return `A(n) ${this.species} is about ${feet} feet taller than ${human.name}.`;
         } else if (this.height < human.height) {
-            return `A(n) ${this.species} is ${relativeDiffHeight.toFixed(0)}% shorter than ${human.name}.`;
+            return `A(n) ${this.species} is about ${feet} feet shorter than ${human.name}.`;
         } else {
-            return `A(n) ${this.species} has the same height as ${human.name}`
+            return `A(n) ${this.species} has the same height as ${human.name}.`;
         }
-        
     };
 
-    // Dino Compare Method 2: Compare Weight
+    // Compare Weight 
     Dino.prototype.compareWeight = function(human) {
-        const relativeDiffWeight = this.calcRelativeDiff(human.weight, this.weight);
+        const actualDiffWeight = this.calcAbsDiff(this.weight, human.weight);
         if (this.weight > human.weight) {
-            return `A(n) ${this.species} is ${relativeDiffWeight.toFixed(0)}% heavier than ${human.name}.`;
+            return `A(n) ${this.species} is ${actualDiffWeight.toFixed(0)} pounds heavier than ${human.name}.`;
         } else if (this.weight < human.weight) {
-            return `A(n) ${this.species} is ${relativeDiffWeight.toFixed(0)}% lighter than ${human.name}.`;
+            return `A(n) ${this.species} is ${actualDiffWeight.toFixed(0)} pounds lighter than ${human.name}.`;
         } else {
-            return `A(n) ${this.species} has the same height as ${human.name}`
+            return `A(n) ${this.species} has the same weight as ${human.name}.`;
         }
     };
 
-    // Dino Compare Method 3: Compare Diet
+    // Compare Diet 
     Dino.prototype.compareDiet = function(human) {
         return human.diet.toLowerCase() === this.diet.toLowerCase()
             ? `A(n) ${this.species} and ${human.name} are both ${this.diet}s.`
             : `A(n) ${this.species} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
     };
 
-    // Relative Difference Function
-    Dino.prototype.calcRelativeDiff = function(dinosaurMeasurement, humanMeasurement) {
-        const difference = Math.abs(dinosaurMeasurement - humanMeasurement);
-        return (difference / dinosaurMeasurement) * 100; // Return the relative difference as a percentage
+    // Actual Difference Function
+    Dino.prototype.calcAbsDiff = function(dinosaurMeasurement, humanMeasurement) {
+        return Math.abs(dinosaurMeasurement - humanMeasurement);  // Return the absolute difference
     };
+
 
     // Create Dino Objects
     function createDinoObjects(url) {
