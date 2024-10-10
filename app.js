@@ -9,39 +9,46 @@
     // Compare Height
     Dino.prototype.compareHeight = function(human) {
         const actualDiffHeight = this.calcAbsDiff(this.height, human.height);
-        const feet = Math.round(actualDiffHeight / 12)
-        if (this.height > human.height) {
-            return `A(n) ${this.species} is about ${feet} feet taller than ${human.name}.`;
+        const feetDiff = Math.round(actualDiffHeight / 12);
+        const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
+        
+        if (feetDiff === 0) {
+            return `A(n) ${lowercasedSpecies} is almost the same height as ${human.name}.`
+        } else if (this.height > human.height) {
+            return `A(n) ${lowercasedSpecies} is about ${feetDiff} feet taller than ${human.name}.`;
         } else if (this.height < human.height) {
-            return `A(n) ${this.species} is about ${feet} feet shorter than ${human.name}.`;
+            return `A(n) ${lowercasedSpecies} is about ${feetDiff} feet shorter than ${human.name}.`;
         } else {
-            return `A(n) ${this.species} has the same height as ${human.name}.`;
+            return `A(n) ${lowercasedSpecies} has the same height as ${human.name}.`;
         }
     };
 
     // Compare Weight 
     Dino.prototype.compareWeight = function(human) {
         const actualDiffWeight = this.calcAbsDiff(this.weight, human.weight);
+        const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
+
         if (this.weight > human.weight) {
-            return `A(n) ${this.species} is ${actualDiffWeight.toFixed(0)} pounds heavier than ${human.name}.`;
+            return `A(n) ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds heavier than ${human.name}.`;
         } else if (this.weight < human.weight) {
-            return `A(n) ${this.species} is ${actualDiffWeight.toFixed(0)} pounds lighter than ${human.name}.`;
+            return `A(n) ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds lighter than ${human.name}.`;
         } else {
-            return `A(n) ${this.species} has the same weight as ${human.name}.`;
+            return `A(n) ${lowercasedSpecies} has the same weight as ${human.name}.`;
         }
     };
 
     // Compare Diet 
     Dino.prototype.compareDiet = function(human) {
+        const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
         return human.diet === this.diet
-            ? `A(n) ${this.species} and ${human.name} are both ${this.diet}s.`
-            : `A(n) ${this.species} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
+            ? `A(n) ${lowercasedSpecies} and ${human.name} are both ${this.diet}s.`
+            : `A(n) ${lowercasedSpecies} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
     };
 
-    // Actual Difference Function
-    Dino.prototype.calcAbsDiff = function(dinosaurMeasurement, humanMeasurement) {
-        return Math.abs(dinosaurMeasurement - humanMeasurement);  // Return the absolute difference
-    };
+        // Actual Difference Function
+        Dino.prototype.calcAbsDiff = function(dinosaurMeasurement, humanMeasurement) {
+            return Math.abs(dinosaurMeasurement - humanMeasurement);  // Return the absolute difference
+        };
 
 
     // Create Dino Objects
@@ -54,7 +61,7 @@
             })
             .then(function(data) {
                 data.Dinos.forEach(function(dino) { // Loop through each Dino in the data
-                    dinoData.push(new Dino(dino.species.toLowerCase(), dino.weight, dino.height, dino.diet.toLowerCase())); // Create a new Dino object and add it to the array
+                    dinoData.push(new Dino(dino.species, dino.weight, dino.height, dino.diet)); // Create a new Dino object and add it to the array
                 });
                 return dinoData;
             });
@@ -79,7 +86,7 @@
             let inches = parseFloat(document.getElementById('inches').value); // Getting inches
             let height = (feet * 12) + inches;  // Convert height to inches
             let weight = parseFloat(document.getElementById('weight').value);  // Getting weight
-            let diet = document.getElementById('diet').value.toLowerCase();
+            let diet = document.getElementById('diet').value;
 
             // Create the Human object and assign to the 'human' variable
             human = new Human(name, weight, height, diet);
@@ -109,12 +116,12 @@ function generateTiles() {
             ]
 
             // Selecting a random fact for comparison
-            let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)]
+            let randomFact = randomFacts[0]
 
             // Creating the tile
             tile.innerHTML = `
             <h3>${dino.species}</h3>
-            <img src="images/${dino.species.toLowerCase()}.png" alt="${dino.species}">
+            <img src="images/${dino.species}.png" alt="${dino.species}">
             <p>${randomFact}</p>
             `;
             
