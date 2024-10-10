@@ -33,7 +33,7 @@
 
     // Compare Diet 
     Dino.prototype.compareDiet = function(human) {
-        return human.diet.toLowerCase() === this.diet.toLowerCase()
+        return human.diet === this.diet
             ? `A(n) ${this.species} and ${human.name} are both ${this.diet}s.`
             : `A(n) ${this.species} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
     };
@@ -122,7 +122,7 @@ function generateTiles() {
             grid.appendChild(tile);
         });
 
-        // Adding human tile in
+        // Adding human tile
         let humanTile = document.createElement('div');
         humanTile.classList.add('grid-item');
         humanTile.innerHTML = `
