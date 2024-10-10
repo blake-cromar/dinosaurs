@@ -86,3 +86,41 @@
     })();
 
 function generateTiles() {
+    createDinoObjects('dino.json').then(function(dinoData) {
+        let grid = document.getElementById('grid');
+
+        // Create tiles for Dinos and Human
+        dinoData.forEach(function(dino) {
+            let tile = document.createElement('div');
+            tile.classList.add('grid-item');
+
+            // Making a list of random facts
+            let randomFacts = [
+                dino.compareHeight(human),
+                dino.compareWeight(human),
+                dino.compareDiet(human)
+            ]
+
+            // Selecting a random fact for comparison
+            let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)]
+
+            // Creating the tile
+            tile.innerHTML = `
+            <h3>${dino.species}</h3>
+            <img src="images/${dino.species.toLowerCase()}.png" alt="${dino.species}">
+            <p>${randomFact}</p>
+            `;
+            
+            // Adding tile to the grid
+            grid.appendChild(tile);
+        });
+
+        let humanTile = document.createElement('div');
+        humanTile.classList.add('grid-item');
+        humanTile.innerHTML = `
+            <h3>${human.name}</h3>
+            <img src="images/human.png" alt="Human">
+        `;
+        grid.appendChild(humanTile);
+    });
+}
