@@ -10,11 +10,11 @@
     Dino.prototype.compareHeight = function(human) {
         const relativeDiffHeight = this.calcRelativeDiff(this.height, human.height);
         if (this.height > human.height) {
-            return `A ${this.species} is ${relativeDiffHeight.toFixed(0)}% taller than ${human.name}.`;
+            return `A(n) ${this.species} is ${relativeDiffHeight.toFixed(0)}% taller than ${human.name}.`;
         } else if (this.height < human.height) {
-            return `A ${this.species} is ${relativeDiffHeight.toFixed(0)}% shorter than ${human.name}.`;
+            return `A(n) ${this.species} is ${relativeDiffHeight.toFixed(0)}% shorter than ${human.name}.`;
         } else {
-            return `A ${this.species} has the same height as ${human.name}`
+            return `A(n) ${this.species} has the same height as ${human.name}`
         }
         
     };
@@ -23,19 +23,19 @@
     Dino.prototype.compareWeight = function(human) {
         const relativeDiffWeight = this.calcRelativeDiff(human.weight, this.weight);
         if (this.weight > human.weight) {
-            return `A ${this.species} is ${relativeDiffWeight.toFixed(0)}% heavier than ${human.name}.`;
+            return `A(n) ${this.species} is ${relativeDiffWeight.toFixed(0)}% heavier than ${human.name}.`;
         } else if (this.weight < human.weight) {
-            return `A ${this.species} is ${relativeDiffWeight.toFixed(0)}% lighter than ${human.name}.`;
+            return `A(n) ${this.species} is ${relativeDiffWeight.toFixed(0)}% lighter than ${human.name}.`;
         } else {
-            return `A ${this.species} has the same height as ${human.name}`
+            return `A(n) ${this.species} has the same height as ${human.name}`
         }
     };
 
     // Dino Compare Method 3: Compare Diet
     Dino.prototype.compareDiet = function(human) {
         return human.diet.toLowerCase() === this.diet.toLowerCase()
-            ? `A ${this.species} and ${human.name} are both ${this.diet}s.`
-            : `${this.species} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
+            ? `A(n) ${this.species} and ${human.name} are both ${this.diet}s.`
+            : `A(n) ${this.species} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
     };
 
     // Relative Difference Function
@@ -54,7 +54,7 @@
             })
             .then(function(data) {
                 data.Dinos.forEach(function(dino) { // Loop through each Dino in the data
-                    dinoData.push(new Dino(dino.species, dino.weight, dino.height, dino.diet)); // Create a new Dino object and add it to the array
+                    dinoData.push(new Dino(dino.species.toLowerCase(), dino.weight, dino.height, dino.diet.toLowerCase())); // Create a new Dino object and add it to the array
                 });
                 return dinoData;
             });
@@ -79,7 +79,7 @@
             let inches = parseFloat(document.getElementById('inches').value); // Getting inches
             let height = (feet * 12) + inches;  // Convert height to inches
             let weight = parseFloat(document.getElementById('weight').value);  // Getting weight
-            let diet = document.getElementById('diet').value;
+            let diet = document.getElementById('diet').value.toLowerCase();
 
             // Create the Human object and assign to the 'human' variable
             human = new Human(name, weight, height, diet);
