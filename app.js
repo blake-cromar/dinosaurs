@@ -63,16 +63,26 @@
     }
 
     // Use IIFE to get human data from form
+    var human;
+    (function getHumanData() {
+        var btn = document.getElementById('btn');  // Get the button element
+        btn.addEventListener('click', function() {
+            let name = document.getElementById('name').value;
+            let feet = parseFloat(document.getElementById('feet').value);  // Getting feet
+            let inches = parseFloat(document.getElementById('inches').value); // Getting inches
+            let height = (feet * 12) + inches;  // Convert height to inches
+            let weight = parseFloat(document.getElementById('weight').value);  // Getting weight
+            let diet = document.getElementById('diet').value;
 
+            // Create the Human object and assign to the 'human' variable
+            human = new Human(name, weight, height, diet);
 
+            // Hide form after getting data
+            document.getElementById('dino-compare').style.display = 'none';
 
+            // Now generate the infographic
+            generateTiles();
+        });
+    })();
 
-
-    // Generate Tiles for each Dino in Array
-  
-        // Add tiles to DOM
-
-    // Remove form from screen
-
-
-// On button click, prepare and display infographic
+function generateTiles() {
