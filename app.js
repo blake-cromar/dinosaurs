@@ -122,12 +122,14 @@ function generateTiles() {
             grid.appendChild(tile);
         });
 
+        // Adding human tile in
         let humanTile = document.createElement('div');
         humanTile.classList.add('grid-item');
         humanTile.innerHTML = `
             <h3>${human.name}</h3>
             <img src="images/human.png" alt="Human">
         `;
-        grid.appendChild(humanTile);
+        // Adding human to the grid
+        grid.insertBefore(humanTile, grid.children[4]);
     });
 }
