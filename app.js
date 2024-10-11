@@ -44,10 +44,12 @@
     // Compare Diet 
     Dino.prototype.compareDiet = function(human) {
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
-        const properArticle = capitalizeWord(determineArticle(lowercasedSpecies));
+        const properArticleFirstWord = capitalizeWord(determineArticle(lowercasedSpecies));
+        const properArticleHumanDiet = determineArticle(human.diet);
+        const properArticleSpeciesDiet = determineArticle(this.diet);
         return human.diet === this.diet
-            ? `${properArticle} ${lowercasedSpecies} and ${human.name} are both ${this.diet}s.`
-            : `${properArticle} ${lowercasedSpecies} is on a ${this.diet.toLowerCase()} diet while ${human.name} is on a ${human.diet.toLowerCase()} diet.`;
+            ? `${properArticleFirstWord} ${lowercasedSpecies} and ${human.name} are both ${this.diet}s.`
+            : `${properArticleFirstWord} ${lowercasedSpecies} is on ${properArticleSpeciesDiet} ${this.diet.toLowerCase()} diet while ${human.name} is on ${properArticleHumanDiet} ${human.diet.toLowerCase()} diet.`;
     };
 
         // Actual Difference Function
