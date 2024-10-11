@@ -79,7 +79,7 @@ function formatSpeciesName(species) {
             });
     }
 
-    // Create Human Object
+// Human Constructor
     function Human(name, weight, height, diet) {
         this.species = 'Human';
         this.name = name;
