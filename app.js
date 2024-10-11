@@ -11,7 +11,9 @@
         const actualDiffHeight = this.calcAbsDiff(this.height, human.height);
         const feetDiff = Math.round(actualDiffHeight / 12);
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
-        
+        const article = determineArticle(lowercasedSpecies);
+        // TODO : handle article
+
         if (feetDiff === 0) {
             return `A(n) ${lowercasedSpecies} is almost the same height as ${human.name}.`
         } else if (this.height > human.height) {
@@ -42,7 +44,7 @@
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
         return human.diet === this.diet
             ? `A(n) ${lowercasedSpecies} and ${human.name} are both ${this.diet}s.`
-            : `A(n) ${lowercasedSpecies} is on a ${this.diet} diet while ${human.name} is on a ${human.diet} diet.`;
+            : `A(n) ${lowercasedSpecies} is on a ${this.diet.toLowerCase()} diet while ${human.name} is on a ${human.diet.toLowerCase()} diet.`;
     };
 
         // Actual Difference Function
@@ -116,7 +118,7 @@ function generateTiles() {
             ]
 
             // Selecting a random fact for comparison
-            let randomFact = randomFacts[0]
+            let randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)]
 
             // Creating the tile
             tile.innerHTML = `
@@ -139,4 +141,15 @@ function generateTiles() {
         // Adding human to the grid
         grid.insertBefore(humanTile, grid.children[4]);
     });
+}
+
+function determineArticle(word) {
+    const firstLetter = word[0].toLowerCase(); // Convert to lowercase to handle uppercase letters
+    const vowels = ['a', 'e', 'i', 'o', 'u']; // Array of vowels
+    
+    if (vowels.includes(firstLetter)) {
+        return 'an'; // Use "an" if the first letter is a vowel
+    } else {
+        return 'a';  // Use "a" for consonants
+    }
 }
