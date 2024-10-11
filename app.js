@@ -68,17 +68,14 @@ function formatSpeciesName(species) {
 
     // Create Dino Objects
     function createDinoObjects(url) {
-        var dinoData = []; // Initialize an empty array to hold Dino objects
-
         return fetch(url)  
-            .then(function(response) {  // Grabbing the JSON
-                return response.json();   // Parse the JSON response
+        .then(function(response) {
+            return response.json();
             })
             .then(function(data) {
-                data.Dinos.forEach(function(dino) { // Loop through each Dino in the data
-                    dinoData.push(new Dino(dino.species, dino.weight, dino.height, dino.diet)); // Create a new Dino object and add it to the array
+            return data.Dinos.map(function(dino) {
+                return new Dino(dino.species, dino.weight, dino.height, dino.diet);
                 });
-                return dinoData;
             });
     }
 
