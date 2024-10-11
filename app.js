@@ -18,6 +18,9 @@ function formatComparisonMessage(dino, human, comparisonResult, unit, attribute)
             : `${speciesName} is about ${Math.abs(comparisonResult)} ${unit} ${comparisonResult > 0 ? 'heavier' : 'lighter'} than ${human.name}.`;
     } else if (attribute === 'height') { // Height statements
         const heightDiffFeet = Math.round(comparisonResult / 12); // Convert inches to feet here
+        if (heightDiffFeet === 1) { // Accounting for when height difference in feet is only 1.
+            unit = 'foot';
+        }
         return comparisonResult === 0
             ? `${speciesName} is almost the same ${attribute} as ${human.name}.`
             : `${speciesName} is about ${Math.abs(heightDiffFeet)} ${unit} ${comparisonResult > 0 ? 'taller' : 'shorter'} than ${human.name}.`;
