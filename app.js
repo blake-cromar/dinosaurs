@@ -153,3 +153,14 @@ function determineArticle(word) {
         return 'a';  // Use "a" for consonants
     }
 }
+
+function capitalizeWord(word) {
+    // Grabbing the first letter and capitalizing it
+    const firstLetterCapital = word[0].toUpperCase();
+
+    // Combining the capitalized first letter with the rest of the word
+    const restOfWord = word.slice(1).toLowerCase();
+
+    // Returning the capitalized word
+    return firstLetterCapital + restOfWord;
+}
