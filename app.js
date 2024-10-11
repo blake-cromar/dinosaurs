@@ -192,7 +192,6 @@ function formatSpeciesName(species) {
     return `${properArticle} ${lowercasedSpecies}`;
 }
 
-// Create Dino Objects
 function createDinoObjects(url) {
     /**
      * Create an array of Dino objects from a given URL.
@@ -218,7 +217,6 @@ function createDinoObjects(url) {
         });
 }
 
-// Human Constructor
 function Human(name, weight, height, diet) {
     /**
      * Initialize a Human object.
@@ -293,7 +291,6 @@ function initDinoComparison() {
         });
     }
 
-    // Create individual Dino tile
     function createTile(dino) {
         /**
          * Create a tile for a dinosaur.
@@ -333,7 +330,6 @@ function initDinoComparison() {
         return tile;
     }
 
-    // Create Human tile
     function createHumanTile() {
         /**
          * Create a tile for the human.
