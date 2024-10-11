@@ -11,17 +11,16 @@
         const actualDiffHeight = this.calcAbsDiff(this.height, human.height);
         const feetDiff = Math.round(actualDiffHeight / 12);
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
-        const article = determineArticle(lowercasedSpecies);
-        // TODO : handle article
+        const properArticle = capitalizeWord(determineArticle(lowercasedSpecies));
 
         if (feetDiff === 0) {
-            return `A(n) ${lowercasedSpecies} is almost the same height as ${human.name}.`
+            return `${properArticle} ${lowercasedSpecies} is almost the same height as ${human.name}.`
         } else if (this.height > human.height) {
-            return `A(n) ${lowercasedSpecies} is about ${feetDiff} feet taller than ${human.name}.`;
+            return `${properArticle} ${lowercasedSpecies} is about ${feetDiff} feet taller than ${human.name}.`;
         } else if (this.height < human.height) {
-            return `A(n) ${lowercasedSpecies} is about ${feetDiff} feet shorter than ${human.name}.`;
+            return `${properArticle} ${lowercasedSpecies} is about ${feetDiff} feet shorter than ${human.name}.`;
         } else {
-            return `A(n) ${lowercasedSpecies} has the same height as ${human.name}.`;
+            return `${properArticle} ${lowercasedSpecies} has the same height as ${human.name}.`;
         }
     };
 
@@ -29,22 +28,24 @@
     Dino.prototype.compareWeight = function(human) {
         const actualDiffWeight = this.calcAbsDiff(this.weight, human.weight);
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
+        const properArticle = capitalizeWord(determineArticle(lowercasedSpecies));
 
         if (this.weight > human.weight) {
-            return `A(n) ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds heavier than ${human.name}.`;
+            return `${properArticle} ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds heavier than ${human.name}.`;
         } else if (this.weight < human.weight) {
-            return `A(n) ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds lighter than ${human.name}.`;
+            return `${properArticle} ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds lighter than ${human.name}.`;
         } else {
-            return `A(n) ${lowercasedSpecies} has the same weight as ${human.name}.`;
+            return `${properArticle} ${lowercasedSpecies} has the same weight as ${human.name}.`;
         }
     };
 
     // Compare Diet 
     Dino.prototype.compareDiet = function(human) {
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
+        const properArticle = capitalizeWord(determineArticle(lowercasedSpecies));
         return human.diet === this.diet
-            ? `A(n) ${lowercasedSpecies} and ${human.name} are both ${this.diet}s.`
-            : `A(n) ${lowercasedSpecies} is on a ${this.diet.toLowerCase()} diet while ${human.name} is on a ${human.diet.toLowerCase()} diet.`;
+            ? `${properArticle} ${lowercasedSpecies} and ${human.name} are both ${this.diet}s.`
+            : `${properArticle} ${lowercasedSpecies} is on a ${this.diet.toLowerCase()} diet while ${human.name} is on a ${human.diet.toLowerCase()} diet.`;
     };
 
         // Actual Difference Function
