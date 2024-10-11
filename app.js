@@ -29,9 +29,8 @@
         const actualDiffWeight = this.calcAbsDiff(this.weight, human.weight);
         const lowercasedSpecies = this.species.toLowerCase(); // Lowercase species name
         const properArticle = capitalizeWord(determineArticle(lowercasedSpecies));
-        const ozDiff = actualDiffWeight * 16;
 
-        if (ozDiff <= 16) {
+        if (actualDiffWeight <= 1) {
             return `${properArticle} ${lowercasedSpecies} is almost the same weight as ${human.name}.`;
         } else if (this.weight > human.weight) {
             return `${properArticle} ${lowercasedSpecies} is ${actualDiffWeight.toFixed(0)} pounds heavier than ${human.name}.`;
