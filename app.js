@@ -266,7 +266,14 @@ function initDinoComparison() {
         });
     })();
 
-    // Generate the tiles for the infographic
+    function clearGrid() {
+        /**
+         * This function clears the grid
+         */
+        const grid = document.getElementById('grid');
+        grid.innerHTML = ''; // clear the grid
+    }
+
     function generateTiles() {
         /**
          * Generate tiles for each dinosaur and the human.
