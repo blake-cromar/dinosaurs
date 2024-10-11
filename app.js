@@ -304,13 +304,20 @@ function initDinoComparison() {
         const tile = document.createElement('div');
         tile.classList.add('grid-item');
 
-        const randomFacts = [
-            dino.compareHeight(human),
-            dino.compareWeight(human),
-            dino.compareDiet(human)
-        ];
-        const randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)];
+        // Determining the random fact
+        let randomFact = null;
+        if (dino.species === 'Pigeon') { // Pigeon always has the same fact
+            randomFact = 'All birds are Dinosaurs.';
+        } else { // All other dinosaurs get a random fact
+            const randomFacts = [
+                dino.compareHeight(human),
+                dino.compareWeight(human),
+                dino.compareDiet(human)
+            ];
+            randomFact = randomFacts[Math.floor(Math.random() * randomFacts.length)];
+        }
 
+        // Creating the html 
         tile.innerHTML = `
             <h3>${dino.species}</h3>
             <img src="images/${dino.species}.png" alt="${dino.species}">
