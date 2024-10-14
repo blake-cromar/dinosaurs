@@ -1,61 +1,74 @@
-# Object Oriented Javascript 
+# Dinographic: Dino Comparison Application
 
-## Student Instructions
+## Overview
 
-### Big Picture
+Dinographic is a web-based application that compares various dinosaur species with the user. The application generates a comparison between a human and several dinosaur species based on height, weight, and diet, offering randomized facts each time the user interacts with it or refreshes the page.
 
-You will be building an infographic that is derived from data that is provided, as well as user input data. Object-oriented javascript is great for working with complex data, but it’s not of much use without an interface to interact with. You will be pulling in information from a form and using it to complete an array of objects that will then be appended back to the DOM. 
+## Features
 
-This may not sound like a lot, but there are a fair amount of moving pieces that rely on each other to work. You’ll need to plan out the logic of what you are trying to accomplish before you begin developing. If you find this process to be quick, there’s a list of additional functionality that you can add that all strive to improve the users’ experience. 
+- Interactive Form: Users input their name, height, weight, and diet into a form.
+- Dino Comparison: The app compares the human data with multiple dinosaurs and generates random facts about the height, weight, and diet differences.
+- Randomized Facts: Each time the page is refreshed, the facts displayed for each dinosaur are randomized.
+- Mobile Responsive: The application is responsive and works across various screen sizes.
 
-For the project, you will generate a 3x3 grid of tiles (9 in total) with the human in the center tile. Each title will contain the species, an image, and a fact. For the human tile, you will display the name of the human rather than species and no fact is necessary for the human. When the user clicks to generate the infographic from the form, the grid will appear and the form will be hidden. The facts displayed should be random per dinosaur with an opportunity of displaying at least 6 different types of facts (3 should be from the methods you create). One of the titles should be for a pigeon in which the tile should always display, “All birds are considered dinosaurs.”
+## Technologies Used
 
+- HTML5
+- CSS3
+- JavaScript (ES6)
+- JSON (to store dinosaur data)
 
-### Getting Started
+## Project Structure
 
-We have supplied some of the foundational code for you. So follow these steps to get started:
+- `index.html`: Main HTML file that contains the structure of the app and the form for user input.
+- `app.css`: Stylesheet for the application, including layout, grid system, and responsive design.
+- `app.js`: JavaScript file that contains the core logic for generating dinosaur comparisons and managing user interactions.
 
-1. We'll start with the typical setup - clone theis repo and install the dependencies
+## How It Works
 
-```git clone git@github.com:udacity/Javascript.git```
+1. **User Input**: The user fills out the form with their name, height, weight, and diet.
+2. **Data Comparison**: The app compares the user's input to the data of several dinosaurs (fetched from a JSON file).
+3. **Random Fact Generation**: For each dinosaur, a random fact is chosen between height, weight, and diet comparison.
+4. **Dynamic Tiles**: The comparisons are displayed dynamically on tiles in a responsive grid format.
+5. **Randomized on Refresh**: Each time the page is reloaded, the dinosaur facts are re-randomized.
 
-2. Decide how you will work with classes, then build out your classes and objects. 
+## How to Use:
+1. **Clone the Repository**:
+```bash
+git clone [repository URL]
+```
+2. **Open** `index.html`: Open the `index.html` file in your browser.
+3. **Enter Your Information**: Input your name, height (in feet and inches), weight (in pounds), and select your diet from the form.
+4. **Compare**: Click the "Compare Me!" button to see how you compare with various dinosaurs.
+5. **Refresh for More Facts**: Reload the page to randomize the facts again.
 
-3. Get human data from the html form to build your human object. Think about what 3 things you are going to compare to your human. You may need to create more fields, adjust the fields that are there, or remove fields to correspond with the data you will be collecting. 
+## File Breakdown
 
-4. Create at least 3 methods that compare dino data to human data. Depending on how you decided to create your objects and what design pattern you chose, you may encounter issues accessing or working with some of the data. Do you need to create any functions to access/store this data?
+`index.html` <br>
+- Contains the structure of the webpage, including a header, form, grid, and footer.
+- Links the external CSS and JavaScript files.
 
-5. Generate tiles and append to the DOM. Each Dino title must include at least the species, an image and a fact. The dino fact displayed should be chosen at random from at least 6 options (including your 3 methods). The Human tile must include the user’s name, and the human graphic--no fact is needed. The bird tile should include the species, image, and fact, “All birds are considered dinosaurs.”
+`app.css`<br>
+- Defines the styles for the grid layout, form, and tiles.
+- Uses a gradient background and Google Fonts for a visually appealing design.
+- Adds responsiveness to ensure proper layout across different screen sizes.
 
-6. Make certain the grid is not being added until you click the button to submit user data. Additionally, remove the form once the user has clicked to generate the infographic. It is a good idea to remove any calls to console.log at this point. 
+`app.js`<br>
+- Handles the logic for creating and displaying dinosaur comparison tiles.
+- Randomly selects facts for each dinosaur.
+- Fetches dinosaur data from a JSON file.
+- Contains helper functions for generating tiles, clearing the grid, and formatting species names.
 
-7. REFACTOR. At this point, your code should be working properly. Ideally, refactoring happens while you are developing, but as a new developer, you often don’t have the whole picture in your head to be able to do so properly.  Let’s clean the project up. 
+## External Resources
 
-8. To preview the final version of your project online, commit the project to your github account. Access the index page at. https://github.com/path/to/project/index.html Copy that URL into https://htmlpreview.github.io/
+- **Google Fonts**: Fonts used include Frijole, Open Sans, and Oswald.
+- **Normalize.css**: Used for cross-browser style normalization.
+- **Images**: Dino images are referenced from the `/images/` folder.
 
-### Project Requirements
+## License
 
-To complete this project, your UI must show the following:
+This project is free to use and distribute. Feel free to fork or contribute to it.
 
-- [ ] The form should contain a button which upon clicking, removes the form
-- [ ] The button should append a grid with 9 tiles to the DOM with the Human located in the center
-- [ ] The Human tile should display the name of the person and an image, the dino tiles should contain the species, an image and a fact, the bird title should contain the species, image, and "All birds are Dinosaurs."
+<hr>
 
-
-To complete this project, your backend code must:
-
-- [ ] Contain a class and all necessary objects
-- [ ] Contain at least 3 methods for comparing dinosaurs to the human
-- [ ] Get user data from the DOM
-- [ ] Append tiles with object data to DOM
-
-### Above and Beyond
-
-There's no extra credit in this course, but if you plan to use this project in your portfolio, you may enjoy taking this project further. 
-
-Some ideas might be to validate the form data to ensure the data is acceptable and complete. Allow the user to generate a new infographic. Move the tile colors from CSS to JS for more control. Randomize the order of the tiles while keeping the human in the middle. Create a hover state on the tiles that displays the rest of the species statistics. Create additional methods for comparing data. Rewrite the project to use constructor functions, factory functions, the module pattern, and revealing module pattern. Change out data and images to generate an infographic of your own choosing. Allow the user to select different units for the numbers and update your methods to account for this. Make changes to the CSS, and HTML to make the project your own. 
-
-
-### Version Control
-
-Although not a requirement, we recommend using Git from the very beginning. Make sure to commit often and to use well-formatted commit messages that conform to our Git Style Guide.
+This ReadMe should give users and developers a clear understanding of how to use and work with your Dino Comparison project. Let me know if you'd like any adjustments!
